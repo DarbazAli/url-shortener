@@ -1,21 +1,25 @@
-const express = require('express')
+'use strict'
+console.clear()
+const log = console.log
 
-const app = express();
+import express from 'express'
+import { config } from 'dotenv'
 
-app.listen(3000, () => console.log("Listening on 3000"))
+// custom modules
+import homeRoute from './routes/homeRoute.js'
+
+// init express app = main
+const app = express()
+config() // dotenv
+
+const { PORT } = process.env
+app.listen(PORT, log(`Server running on PORT ${PORT}\n`))
 
 // setup template engine
-app.set('views', './views');
-app.set('view engine', 'pug');
+app.set('views', './views')
+app.set('view engine', 'pug')
 
 // serve static files
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(process.cwd() + '/public'))
 
-// create the home url
-app.get('/', (req, res) => {
-    res.render('index', {title: 'Home', message: "Hello There"})
-})
-
-app.get('/about', (req, res) => {
-    res.render('about')
-})
+homeRoute(app)
