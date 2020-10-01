@@ -5,6 +5,7 @@ const log = console.log
 import express from 'express'
 import { config } from 'dotenv'
 import mongoose from 'mongoose'
+import bodyParser from 'body-parser'
 
 // import { generate } from 'shortid'
 
@@ -25,6 +26,8 @@ app.set('view engine', 'pug')
 
 // serve static files
 app.use(express.static(process.cwd() + '/public'))
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 // connect to Database
 mongoose
