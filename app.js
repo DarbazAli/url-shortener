@@ -12,6 +12,7 @@ import bodyParser from 'body-parser'
 // custom modules
 import homeRoute from './routes/homeRoute.js'
 import apiRoute from './routes/apiRoute.js'
+import redirectRoute from './routes/redirectRoute.js'
 import URL from './Schema.js'
 // init express app = main
 const app = express()
@@ -39,7 +40,8 @@ mongoose
     .then(
         // make requests to db
         log('connected to database'),
-        apiRoute(app, URL)
+        apiRoute(app, URL),
+        redirectRoute(app, URL)
     )
     .catch((err) => log(err))
 
