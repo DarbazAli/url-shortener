@@ -5,8 +5,6 @@ const redirectRoute = (app, URL) => {
         // search in db for this url
         URL.findOne({ short_url: url }, (err, data) => {
             if (err) console.log(err)
-            // res.redirect(data.original_url)
-            console.log(data.original_url)
             res.redirect(data.original_url)
         })
     })

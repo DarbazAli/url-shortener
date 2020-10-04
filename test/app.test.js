@@ -72,4 +72,24 @@ suite('HTTP METHODES', () => {
                 })
         })
     })
+
+    /* -------------------------------------------------------------------------------- */
+
+    /* ==============================
+        TEST REDIRECT TO ORIGINAL URL
+    ============================== */
+    suite('Redirect', () => {
+        test('GET /:url , Redirect to original url', (done) => {
+            request(app)
+                .get('/ZlO913d10')
+                .end((err, res) => {
+                    const location = res.redirects
+                    assert.include(
+                        location,
+                        'https://www.npmjs.com/package/shortid'
+                    )
+                    done()
+                })
+        })
+    })
 })
