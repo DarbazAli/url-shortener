@@ -46,3 +46,5 @@ mongoose
     .catch((err) => log(err))
 
 homeRoute(app)
+
+export default app // for testing
