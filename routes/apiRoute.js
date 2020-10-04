@@ -6,7 +6,7 @@ const apiURL = (app, URL) => {
         .post((req, res) => {
             const { url } = req.body
             if (!isUri(url)) {
-                res.send('This is not avalid url')
+                res.status(401).send('This is not avalid url')
             } else {
                 const newURL = new URL({
                     short_url: generate(),

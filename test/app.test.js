@@ -24,4 +24,22 @@ suite('HTTP METHODES', () => {
                 })
         })
     })
+
+    // api
+    suite('API', () => {
+        test('Ivalid URL, Posting an invalid URL should responde with error', (done) => {
+            request(app)
+                .post('/api/url')
+                .type('form')
+                .send({
+                    _methode: 'post',
+                    url: 'none-url-string',
+                })
+                .end((err, res) => {
+                    assert.equal(res.status, 401, 'res.status should be 401')
+                    assert.equal(res.text, 'This is not avalid url')
+                    done()
+                })
+        })
+    })
 })
